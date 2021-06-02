@@ -109,8 +109,10 @@ export async function transfer(data) {
   const contractERC20Interface = store.getters['metamask/contracts/getERC20InterfaceContract'];
 
   let raw = contractERC20Interface.methods.transfer(data.seller, data.amount).encodeABI()
-
-  let receipt = await sendTransaction(contractInfo.USDTTokenAddress.address, raw, data.from)
+  const tokenAddress = contractInfo.DAIToken.address
+  console.log('tokenAddress', tokenAddress)
+  // let receipt = await sendTransaction(contractInfo.USDTTokenAddress.address, raw, data.from)
+  let receipt = await sendTransaction(contractInfo.DAIToken.address, raw, data.from)
   return { data, receipt }
 
 }

@@ -51,7 +51,11 @@ export default {
       const Escrow20BasicContract = new web3.eth.Contract(Escrow20Basic, contractInfo.Escrow20Basic.address)
       const SingleEscrowContract = new web3.eth.Contract(SingleEscrow, contractInfo.SingleEscrow.address)
       const EscrowFactoryContract = new web3.eth.Contract(EscrowFactory, contractInfo.EscrowFactory.address)
-      const ERC20InterfaceContract = new web3.eth.Contract(ERC20Interface, contractInfo.ERC20Interface.address)
+
+      const DAITokenAddress = "0xC3C94c56D887a62B2eef9d49945A8b4f9Cc20511"
+      const ERC20InterfaceContract = new web3.eth.Contract(ERC20Interface, DAITokenAddress)
+      //const ERC20InterfaceContract = new web3.eth.Contract(ERC20Interface, contractInfo.ERC20Interface.address)
+
       const SimpleEscrowContract = new web3.eth.Contract(SimpleEscrow, contractInfo.SimpleEscrow.address)
 
       commit('SET_CONTRACT_Escrow20', Escrow20Contract)

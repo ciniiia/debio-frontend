@@ -247,6 +247,7 @@ export default {
       lastEventData: (state) => state.substrate.lastEventData,
       metamaskWalletAddress: (state) => state.metamask.metamaskWalletAddress,
       metamaskWalletBalance: (state) => state.metamask.metamaskWalletBalance,
+      erc20token: state => state.metamask.contracts.contractERC20Interface,
     }),
     dataLoaded() {
       return this.lab && this.service && this.order;
@@ -294,6 +295,7 @@ export default {
       this.dialogAlert = false;
     },
     async openMetamask() {
+      console.log(this.erc20token)
       await startApp();
       if (this.metamaskWalletAddress == "") {
         this.alertTextBtn = "Close";
@@ -323,10 +325,14 @@ export default {
         this.alertType = "no_acc_eth";
         return;
       }
+      const decimalPlaces = 18
+      const price = Math.pow(this.priceOrder, decimalPlaces)
+      console.log('from', this.metamaskWalletAddress)
+      console.log('seller', ethSellerAddress)
       try {
         let txreceipts = await transfer({
           seller: ethSellerAddress,
-          amount: parseFloat(this.priceOrder),
+          amount: String(price),
           from: this.metamaskWalletAddress,
         });
         console.log(txreceipts);

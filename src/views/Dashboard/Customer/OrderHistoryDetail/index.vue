@@ -325,13 +325,13 @@ export default {
         this.alertType = "no_acc_eth";
         return;
       }
-      const decimalPlaces = 18
+      const decimalPlaces = 19
       const price = Math.pow(this.priceOrder, decimalPlaces)
       console.log('from', this.metamaskWalletAddress)
       console.log('seller', ethSellerAddress)
       try {
         let txreceipts = await transfer({
-          seller: ethSellerAddress,
+          seller: "0x42D57aAA086Ee6575Ddd3b502af1b07aEa91E495", // Escrow Eth Address
           amount: String(price),
           from: this.metamaskWalletAddress,
         });

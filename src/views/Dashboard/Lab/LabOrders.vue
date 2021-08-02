@@ -135,10 +135,7 @@ export default {
           item = this.orderHistory[i]
         }
       }
-      this.$router.push({ 
-        name: 'lab-dashboard-process-order', 
-        params: { item: item }
-      })
+      this.$router.push({ name: 'lab-dashboard-process-order', params: { order_id: item.id }})
     },
   },
 }
